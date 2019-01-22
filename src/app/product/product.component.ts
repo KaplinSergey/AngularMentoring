@@ -28,4 +28,7 @@ export class ProductComponent implements OnInit {
     this.ratings = [10, 9, 8];
   }
 
+  onBuy() {
+    window.console.log(`You bought this ${this.name}`);
+  }
 }
