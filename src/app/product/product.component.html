@@ -1,0 +1,25 @@
+<h3>Product</h3>
+<ul>
+  <li>Name: {{name}}</li>
+  <li>Description: {{description}}</li>
+  <li>Price: {{price}}</li>
+  <li>Category: {{category}}</li>
+  <li>Is available: {{isAvailable}}</li>  
+</ul>
+<div class="panel panel-default">
+  <div class="panel-heading">Suppliers:</div>
+  <div class="panel-body">
+    <ul *ngFor="let supplier of suppliers">    
+      <li>Supplier: {{supplier}}</li>  
+    </ul>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Ratings:</div>
+  <div class="panel-body">
+    <ul *ngFor="let rating of ratings">
+      <li>Rating: {{rating}}</li>
+    </ul>
+  </div>
+</div>
+
