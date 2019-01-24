@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from './category';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'app-product', // <app-product></app-product>
@@ -29,6 +29,6 @@ export class ProductComponent implements OnInit {
   }
 
   onBuy() {
-    window.console.log(`You bought this ${this.name}`);
+    console.log(`You have bought this ${this.name}`);
   }
 }
