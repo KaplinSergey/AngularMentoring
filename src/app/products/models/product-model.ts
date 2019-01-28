@@ -2,29 +2,15 @@ import { IProduct } from './iproduct';
 import { Category } from './category';
 
 export class ProductModel implements IProduct {
-    name: string;
-    description: string;
-    price: number;
-    category: Category;
-    isAvailable: boolean;
-    suppliers: string[];
-    ratings: number[];
 
     constructor(
-        name: string,
-        description: string,
-        price: number,
-        category: Category,
-        isAvailable: boolean,
-        suppliers: string[],
-        ratings: number[]
+        public name: string,
+        public description: string,
+        public price: number,
+        public category: Category,
+        public isAvailable: boolean,
+        public suppliers: string[],
+        public ratings: number[]
     ) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.category = category;
-        this.isAvailable = isAvailable;
-        this.suppliers = suppliers;
-        this.ratings = ratings;
     }
 }
