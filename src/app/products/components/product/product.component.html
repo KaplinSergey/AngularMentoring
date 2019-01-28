@@ -1,0 +1,24 @@
+<ul>
+  <li>Name: {{product.name}}</li>
+  <li>Description: {{product.description}}</li>
+  <li>Price: {{product.price}}$</li>
+  <li>Category: {{product.category}}</li>
+  <li>Is available: {{product.isAvailable}}</li>  
+</ul>
+<div class="panel panel-default">
+  <div class="panel-heading">Suppliers:</div>
+  <div class="panel-body">
+    <ul *ngFor="let supplier of product.suppliers">    
+      <li>Supplier: {{supplier}}</li>  
+    </ul>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Ratings:</div>
+  <div class="panel-body">
+    <ul *ngFor="let rating of product.ratings">
+      <li>Rating: {{rating}}</li>
+    </ul>
+  </div>
+</div>
+<button (click)="onBuy()">Buy</button>
