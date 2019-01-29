@@ -2,6 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { ProductModel } from '../../products/models/product-model';
 import { CartModel } from '../models/cart-model';
 import { Subject } from 'rxjs';
+import { CartItemModel } from '../models/cart-item-model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,14 @@ export class CartService {
   }
 
   buyProduct(product: ProductModel) {
-    this.cart.products.push(product);
+    const item = this.cart.items.find((e) => e.product.name === product.name);
+
+    if (!item) {
+      this.cart.items.push(new CartItemModel(product, 1));
+    } else {
+      item.quantity++;
+    }
+
     this.showCart(this.cart.getProductsCount() > 0);
   }
 

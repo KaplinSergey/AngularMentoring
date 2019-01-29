@@ -1,17 +1,19 @@
 import { ProductModel } from '../../products/models/product-model';
+import { CartItemModel } from './cart-item-model';
 
 export class CartModel {
-    products: Array<ProductModel>;
+    items: Array<CartItemModel>;
 
     constructor() {
-        this.products = new Array<ProductModel>();
+        this.items = new Array<CartItemModel>();
     }
 
     getFullProductsPrice(): number {
-        return this.products.reduce((a, b) => a + b.price, 0);
+        return this.items.reduce((price, item) =>
+         price + (item.product.price * item.quantity), 0);
     }
 
     getProductsCount(): number {
-        return this.products.length;
+        return this.items.reduce((count, item) => count + item.quantity, 0);
     }
 }

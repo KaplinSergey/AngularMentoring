@@ -1,6 +1,9 @@
 <h2>Your shopping cart</h2>
 <ol>
-  <li *ngFor="let product of cart.products">{{product.name}} - {{product.price}}$</li>
+  <li *ngFor="let item of cart.items">
+    {{item.product.name}} - {{item.product.price}}$ 
+    <h5>{{item.quantity}}</h5>
+  </li>
 </ol>
 <h4>Total count of products: {{cart.getProductsCount()}}</h4>
 <h3>Total cost: {{cart.getFullProductsPrice()}}$</h3>
