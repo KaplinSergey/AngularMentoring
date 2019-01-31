@@ -30,10 +30,26 @@ export class CartService {
       item.quantity++;
     }
 
-    this.showCart(this.cart.getProductsCount() > 0);
+    this.showCart(this.getProductsCount() > 0);
   }
 
   showCart(data: boolean) {
     this.channel.next(data);
+  }
+
+  deleteItem(item: CartItemModel) {
+    const index: number = this.cart.items.indexOf(item);
+    if (index !== -1) {
+      this.cart.items.splice(index, 1);
+    }
+  }
+
+  getFullProductsPrice(): number {
+    return this.cart.items.reduce((price, item) =>
+     price + (item.product.price * item.quantity), 0);
+}
+
+  getProductsCount(): number {
+    return this.cart.items.reduce((count, item) => count + item.quantity, 0);
   }
 }
