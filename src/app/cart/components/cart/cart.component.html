@@ -1,8 +1,7 @@
 <h2>Your shopping cart</h2>
 <ol>
   <li *ngFor="let item of cart.items">
-    <app-cart-item [item] = item></app-cart-item>
-    <button (click)="onDelete(item)">Delete</button>
+    <app-cart-item [item] = item (delete)="onDelete($event)"></app-cart-item>
   </li>
 </ol>
 <h4>Total count of products: {{cartService.getProductsCount()}}</h4>

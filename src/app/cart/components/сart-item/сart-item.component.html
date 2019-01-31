@@ -1,5 +1,5 @@
 <div class="container">
   {{item.product.name}} - {{item.product.price}}$ 
   <input type="number" [(ngModel)]="item.quantity">
-  {{item.quantity}}
+  <button (click)= "onDelete()">Delete</button>
 </div>
