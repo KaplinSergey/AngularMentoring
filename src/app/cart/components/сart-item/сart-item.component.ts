@@ -3,11 +3,13 @@ import { CartItemModel } from '../../models/cart-item-model';
 import { EventEmitter } from '@angular/core';
 import { SimpleChanges } from '@angular/core';
 import { KeyValueDiffers } from '@angular/core';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-cart-item',
   templateUrl: './сart-item.component.html',
   styleUrls: ['./сart-item.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class СartItemComponent implements OnInit, DoCheck, OnDestroy {
   @Input()
