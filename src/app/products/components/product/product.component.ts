@@ -14,4 +14,19 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  setClasses() {
+    return {
+      panel: true,
+      'panel-default': true,
+      'not-available': !this.product.isAvailable,
+      available: this.product.isAvailable,
+    };
+  }
+
+  setStyles() {
+    return {
+      'list-style-type': 'upper-roman'
+    };
+  }
 }
