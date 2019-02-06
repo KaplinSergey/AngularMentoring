@@ -1,24 +1,34 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Category } from '../../models/category';
 import { ProductModel } from '../../models/product-model';
-import { CartService } from '../../../cart/services/cart.service';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-product', // <app-product></app-product>
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductComponent implements OnInit {
   @Input()
   product: ProductModel;
 
-  constructor(private cartService: CartService) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  onBuy() {
-    console.log(`You have bought this ${this.product.name}`);
-    this.cartService.buyProduct(this.product);
+  setClasses() {
+    return {
+      panel: true,
+      'panel-default': true,
+      'not-available': !this.product.isAvailable,
+      available: this.product.isAvailable,
+    };
+  }
+
+  setStyles() {
+    return {
+      'list-style-type': 'upper-roman'
+    };
   }
 }

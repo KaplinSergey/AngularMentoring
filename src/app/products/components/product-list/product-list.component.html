@@ -2,5 +2,8 @@
 <ul>
   <li *ngFor="let product of products">
     <app-product [product] = product></app-product>
+    <div *ngIf="product.isAvailable">
+      <button (click)="onBuy(product)">Buy</button>
+    </div>  
   </li>
 </ul>
