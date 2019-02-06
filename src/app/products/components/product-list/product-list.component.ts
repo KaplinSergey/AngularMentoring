@@ -12,15 +12,14 @@ export class ProductListComponent implements OnInit {
   products: Array<ProductModel>;
 
   constructor(private productsService: ProductsService,
-     private cartService: CartService) { }
+    private cartService: CartService) { }
 
   ngOnInit() {
     this.products = this.productsService.getProducts();
   }
 
   onBuy(product: ProductModel) {
-    if(product.isAvailable)
-    {
+    if (product.isAvailable) {
       console.log(`You have bought this ${product.name}`);
       this.cartService.buyProduct(product);
     }

@@ -4,5 +4,5 @@
     <app-cart-item [item] = item (delete)="onDelete($event)"></app-cart-item>
   </li>
 </ol>
-<h4>Total count of products: {{cartService.getProductsCount()}}</h4>
-<h3>Total cost: {{cartService.getFullProductsPrice()}}$</h3>
+<h4>Total count of products: {{getProductsCount()}}</h4>
+<h3>Total cost: {{getFullProductsPrice()}}$</h3>

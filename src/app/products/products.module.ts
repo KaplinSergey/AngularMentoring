@@ -6,14 +6,13 @@ import { ProductListComponent } from './components/product-list/product-list.com
 @NgModule({
   declarations: [
     ProductComponent,
-     ProductListComponent
-    ],
+    ProductListComponent
+  ],
   imports: [
     CommonModule
   ],
   exports: [
-    ProductComponent,
-     ProductListComponent
-    ]
+    ProductListComponent
+  ]
 })
 export class ProductsModule { }

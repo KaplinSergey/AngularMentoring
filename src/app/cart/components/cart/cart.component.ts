@@ -12,7 +12,7 @@ export class CartComponent implements OnInit {
   cart: CartModel;
   showCart: boolean;
 
-  constructor(private cartService: CartService ) { }
+  constructor(private cartService: CartService) { }
 
   ngOnInit() {
     this.cart = this.cartService.getCart();
@@ -21,5 +21,13 @@ export class CartComponent implements OnInit {
 
   onDelete(item: CartItemModel) {
     this.cartService.deleteItem(item);
+  }
+
+  getProductsCount(): number {
+    return this.cartService.getProductsCount();
+  }
+
+  getFullProductsPrice(): number {
+    return this.cartService.getFullProductsPrice();
   }
 }
