@@ -14,7 +14,7 @@ export class CartService {
 
   constructor() {
     this.cart = new CartModel();
-   }
+  }
 
 
   getCart(): CartModel {
@@ -46,10 +46,21 @@ export class CartService {
 
   getFullProductsPrice(): number {
     return this.cart.items.reduce((price, item) =>
-     price + (item.product.price * item.quantity), 0);
-}
+      price + (item.product.price * item.quantity), 0);
+  }
 
   getProductsCount(): number {
     return this.cart.items.reduce((count, item) => count + item.quantity, 0);
+  }
+
+  changeItemQuantity(item: CartItemModel, quantity: number) {
+    const index: number = this.cart.items.indexOf(item);
+    if (index !== -1) {
+      this.cart.items[index].quantity = quantity;
+    }
+  }
+
+  clearCart() {
+    this.cart.items = new Array<CartItemModel>();
   }
 }
