@@ -20,7 +20,7 @@ import { ConfigModel } from '../../models/config-model';
 export class ContactUsComponent implements OnInit {
 
   constructor(
-    @Inject(ConstantsService) private constant: string,
+    @Inject(ConstantsService) private constant: any,
     @Optional() private localStorage: LocalStorageService,
     @Inject(StringGenerator) private stringGenerator: string,
     @Optional() private configOptionsService: ConfigOptionsService

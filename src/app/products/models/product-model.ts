@@ -10,7 +10,8 @@ export class ProductModel implements IProduct {
         public category: Category,
         public isAvailable: boolean,
         public suppliers: string[],
-        public ratings: number[]
+        public ratings: number[],
+        public lastUpdate: Date
     ) {
     }
 }

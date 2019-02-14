@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HighlightDirective } from './directives/highlight.directive';
+import { EnamPipe } from './pipes/enam.pipe';
 
 @NgModule({
-  declarations: [HighlightDirective],
+  declarations: [HighlightDirective, EnamPipe],
   imports: [
     CommonModule
   ],
   exports: [
-    HighlightDirective
+    HighlightDirective,
+    EnamPipe
   ]
 })
 export class SharedModule { }

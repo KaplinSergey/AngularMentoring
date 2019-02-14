@@ -1,6 +1,6 @@
 <h2>Products list</h2>
 <ul>
-  <li *ngFor="let product of products">
+  <li *ngFor="let product of products | async">
     <app-product [product] = product></app-product>
     <div *ngIf="product.isAvailable">
       <button (click)="onBuy(product)">Buy</button>
