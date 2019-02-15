@@ -1,6 +1,10 @@
 <h2>Your shopping cart</h2>
+<h4>Order by</h4>
+<select [(ngModel)]="selectedOrder">
+  <option *ngFor="let order of orders" [ngValue]="order">{{order}}</option>
+</select>
 <ol>
-  <li *ngFor="let item of cart.items">
+  <li *ngFor="let item of cart.items | orderBy: selectedOrder">
     <app-cart-item [item] = item (delete)="onDelete($event)"></app-cart-item>
   </li>
 </ol>
