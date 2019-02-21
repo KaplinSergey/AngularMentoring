@@ -11,6 +11,8 @@ import { CartItemModel } from '../../models/cart-item-model';
 export class CartComponent implements OnInit {
   cart: CartModel;
   showCart: boolean;
+  orders: Array<string> = ['quantity', 'name', 'price'];
+  selectedOrder = this.orders[0];
 
   constructor(private cartService: CartService) { }
 

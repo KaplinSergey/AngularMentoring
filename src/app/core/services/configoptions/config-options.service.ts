@@ -7,7 +7,9 @@ import { ConfigModel } from '../../models/config-model';
 export class ConfigOptionsService {
   private config: ConfigModel;
 
-  constructor() { }
+  constructor() {
+    this.config = new ConfigModel(1, 'test', 'test@gmail.com');
+  }
 
   get() {
     return this.config;

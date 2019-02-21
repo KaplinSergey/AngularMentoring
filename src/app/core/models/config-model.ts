@@ -2,7 +2,7 @@ export class ConfigModel {
     constructor(
         public id: number,
         public login: string,
-        public email: number
+        public email: string
     ) {
     }
 }

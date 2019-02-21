@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProductModel } from '../../models/product-model';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'app-product', // <app-product></app-product>
@@ -11,6 +12,7 @@ import { ChangeDetectionStrategy } from '@angular/core';
 export class ProductComponent implements OnInit {
   @Input()
   product: ProductModel;
+  Category = Category;
 
   constructor() { }
 
