@@ -1,0 +1,13 @@
+<div style="text-align:center">
+  <h1 #appTitle></h1>
+</div>
+<div class="container">
+  <!-- <div *ngIf="showCart; else emptyCart">
+    <app-cart></app-cart>
+  </div> -->
+  <ng-template #emptyCart>
+    <h3>Cart is empty</h3>
+  </ng-template>
+  <app-product-list></app-product-list>
+  <!-- <app-contact-us></app-contact-us> -->
+</div>

@@ -1,4 +1,4 @@
-<div [ngClass] = "setClasses()" class="panel panel-default">
+<div class="panel panel-default">
     <div class="panel-heading">Product:</div>
     <div class="panel-body">
       <ul>
@@ -13,7 +13,7 @@
             </ul>
         </li>
         <li>Ratings:
-            <ul *ngFor="let rating of product.ratings" [ngStyle]="setStyles()">
+            <ul *ngFor="let rating of product.ratings">
                 <li>Rating: {{rating}}</li>
             </ul>
         </li>
