@@ -1,23 +1,26 @@
-<div [ngClass] = "setClasses()" class="panel panel-default">
-  <div class="panel-heading">Product:</div>
-  <div class="panel-body">
-    <ul>
-      <li>Name: {{product.name | uppercase }}</li>
-      <li>Description: {{product.description}}</li>
-      <li>Price: {{product.price | currency}}</li>
-      <li>Category: {{product.category | enamToString: Category}}</li>
-      <li>Is available: {{product.isAvailable}}</li>
-      <li>Suppliers:
-          <ul *ngFor="let supplier of product.suppliers">    
-              <li>Supplier: {{supplier}}</li>  
-          </ul>
-      </li>
-      <li>Ratings:
-          <ul *ngFor="let rating of product.ratings" [ngStyle]="setStyles()">
-              <li>Rating: {{rating}}</li>
-          </ul>
-      </li>
-      <li>Last update: {{product.lastUpdate | date: 'short'}}</li>
-    </ul>
-</div>
+<div [ngClass]="setClasses()" class="panel panel-default">
+    <div class="panel-heading">Product:</div>
+    <div class="panel-body">
+        <ul>
+            <li>Name: {{product.name | uppercase }}</li>
+            <li>Description: {{product.description}}</li>
+            <li>Price: {{product.price | currency}}</li>
+            <li>Category: {{product.category | enamToString: Category}}</li>
+            <li>Is available: {{product.isAvailable}}</li>
+            <li>Suppliers:
+                <ul *ngFor="let supplier of product.suppliers">
+                    <li>Supplier: {{supplier}}</li>
+                </ul>
+            </li>
+            <li>Ratings:
+                <ul *ngFor="let rating of product.ratings" [ngStyle]="setStyles()">
+                    <li>Rating: {{rating}}</li>
+                </ul>
+            </li>
+            <li>Last update: {{product.lastUpdate | date: 'short'}}</li>
+        </ul>
+    </div>
+    <div class="panel-footer">
+        <button [routerLink]="['/product', product.id]">Details</button>
+    </div>
 </div>

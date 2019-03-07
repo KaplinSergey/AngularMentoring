@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ProductModel } from '../../models/product-model';
 import { Category } from '../../models/category';
 import { ProductsService } from '../../services/products.service';
@@ -12,7 +12,7 @@ import { switchMap } from 'rxjs/operators';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, OnDestroy {
   product: ProductModel;
   Category = Category;
 
@@ -35,5 +35,11 @@ export class ProductComponent implements OnInit {
       product => this.product = { ...product },
       err => console.log(err)
     );
+
+    this.router.navigate([{ outlets: { feedback: ['feedback'] } }]);
+  }
+
+  ngOnDestroy(): void {
+    this.router.navigate([{ outlets: { feedback: null} }]);
   }
 }

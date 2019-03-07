@@ -20,7 +20,8 @@ export class ProductListComponent implements OnInit {
 
   onBuy(product: ProductModel) {
     if (product.isAvailable) {
-      console.log(`You have bought this ${product.name}`);
+      console.log(`${product.name} has been added to you shoping cart`);
+      alert(`"${product.name}" has been added to you shoping cart`);
       this.cartService.buyProduct(product);
     }
   }
