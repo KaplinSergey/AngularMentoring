@@ -17,7 +17,12 @@ export class AppComponent implements OnInit {
   onActivate($event) {
     console.log('Activated Component', $event);
   }
+
   onDeactivate($event) {
     console.log('Deactivated Component', $event);
+  }
+
+  navigate(url: string) {
+    this.router.navigateByUrl(url);
   }
 }

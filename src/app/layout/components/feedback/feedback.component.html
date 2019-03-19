@@ -7,6 +7,6 @@
 <div>
   <button type="button" class="btn btn-primary" (click)="onSend()">Send</button>
 </div>
-<div *ngFor="let feedback of feedbacksService.getFeedbacks()">
+<div *ngFor="let feedback of feedbacksService.getFeedbacks(id)">
   {{feedback}}
 </div>

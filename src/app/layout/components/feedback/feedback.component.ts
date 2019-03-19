@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedbacksService } from '../../../core/services/feedbacks.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
+// rxjs
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-feedback',
@@ -12,14 +15,16 @@ export class FeedbackComponent implements OnInit {
   id: number;
 
   constructor(
-    public feedbacksService: FeedbacksService) { }
+    public feedbacksService: FeedbacksService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.id = +this.route.pathFromRoot[0].snapshot.firstChild.paramMap.get('productID');
   }
 
   onSend() {
     if (this.feedback) {
-      this.feedbacksService.addFeedback(this.feedback);
+      this.feedbacksService.addFeedback(this.id, this.feedback);
       this.feedback = '';
     }
   }
