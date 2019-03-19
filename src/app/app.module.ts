@@ -10,6 +10,7 @@ import { OrdersModule } from './orders/orders.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { LayoutModule } from './layout/layout.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { LayoutModule } from './layout/layout.module';
     CoreModule,
     SharedModule,
     LayoutModule,
+    AdminModule,
     // MUST BE LAST
     AppRoutingModule
   ],
