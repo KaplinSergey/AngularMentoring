@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { AdminDashboardComponent, ManageOrdersComponent, ManageProductsComponent } from './components';
 import { AuthGuard } from './../core';
+import { ProductFormComponent } from '../products/components/product-form/product-form.component';
 
 const adminRoutes: Routes = [{
   path: 'admin',
@@ -14,7 +15,14 @@ const adminRoutes: Routes = [{
       path: '',
       children: [
         { path: 'orders', component: ManageOrdersComponent },
-        { path: 'products', component: ManageProductsComponent },
+        {
+          path: 'products',
+          children: [
+            { path: 'edit/:productID', component: ProductFormComponent},
+            { path: 'add', component: ProductFormComponent},
+            { path: '', component: ManageProductsComponent}
+          ]
+        },
         { path: '', component: AdminDashboardComponent }
       ]
     }

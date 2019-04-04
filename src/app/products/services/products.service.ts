@@ -32,4 +32,16 @@ export class ProductsService {
       .then(products => products.find(product => product.id === +id))
       .catch(() => Promise.reject('Error in getProduct method'));
   }
+
+  addProduct(product: ProductModel) {
+    this.data.push(product);
+  }
+
+  updateProduct(product: ProductModel) {
+    const index = this.data.findIndex((p) => p.id === product.id);
+
+    if (index !== -1) {
+      this.data.splice(index , 1, product);
+    }
+  }
 }
