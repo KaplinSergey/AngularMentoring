@@ -3,13 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { ShopComponent, PathNotFoundComponent, LoginComponent } from './layout';
 const routes: Routes = [
     {
+        path: 'login',
+        component: LoginComponent
+    },
+    {
+        path: 'admin',
+        loadChildren: './admin/admin.module#AdminModule',
+    },
+    {
         path: '',
         redirectTo: '/products-list',
         pathMatch: 'full'
-    },
-    {
-        path: 'login',
-        component: LoginComponent
     },
     {
         // The router will match this route if the URL requested

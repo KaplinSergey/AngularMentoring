@@ -8,7 +8,7 @@ import { ProductFormComponent } from '../products/components/product-form/produc
 import { ProductResolveGuard } from '../products';
 
 const adminRoutes: Routes = [{
-  path: 'admin',
+  path: '',
   component: AdminComponent,
   canActivate: [AuthGuard],
   children: [
