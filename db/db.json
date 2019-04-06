@@ -1,0 +1,5 @@
+{
+   "products": [
+        { "id": 1, "name": "Angular for dummies", "description": "Angular Tutorial: Learn Angular from scratch step by step", "price": 100, "category": "Books", "isAvailable": "true", "suppliers": [], "ratings": [], "lastUpdate":""}
+    ]
+}
