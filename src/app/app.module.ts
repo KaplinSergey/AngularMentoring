@@ -11,7 +11,8 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { LayoutModule } from './layout/layout.module';
 //  import { AdminModule } from './admin/admin.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TimingInterceptor } from './core/interceptors/timing.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,11 @@ import { HttpClientModule } from '@angular/common/http';
     // MUST BE LAST
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TimingInterceptor,
+    multi: true,
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
