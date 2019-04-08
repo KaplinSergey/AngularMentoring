@@ -1,5 +1,7 @@
 {
    "products": [
-        { "id": 1, "name": "Angular for dummies", "description": "Angular Tutorial: Learn Angular from scratch step by step", "price": 100, "category": "Books", "isAvailable": "true", "suppliers": [], "ratings": [], "lastUpdate":""}
+        { "id": 1, "name": "Angular for dummies", "description": "Angular Tutorial: Learn Angular from scratch step by step", "price": 100, "category": "Books", "isAvailable": "true", "suppliers": ["Amazon", "Ebay"], "ratings": [10, 9, 8], "lastUpdate":"2019-02-04T15:15:00.000Z"},
+        { "id": 2, "name": "C# in Depth", "description": "Third Edition has been thoroughly revised to cover the new features of C# 5", "price": 200, "category": "Books", "isAvailable": "false", "suppliers": ["Amazon"], "ratings": [10, 9, 8], "lastUpdate":"2019-01-05T15:25:00.000Z"},
+        { "id": 3, "name": "JavaScript: The Good Parts", "description": "JavaScript tutorial", "price": 150, "category": "Books", "isAvailable": "true", "suppliers": ["Ebay"], "ratings": [10, 9, 8], "lastUpdate":"2019-02-09T14:15:00.000Z"}
     ]
 }
