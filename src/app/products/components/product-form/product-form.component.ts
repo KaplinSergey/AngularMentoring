@@ -5,6 +5,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { pluck } from 'rxjs/operators';
 import { ProductModel } from './../../models/product-model';
 import { ProductsService } from '../../services/products.service';
+import { ProductPromiseService } from '../../services/products.promise.service';
 import { Category } from '../../models/category';
 import { Router } from '@angular/router';
 
@@ -21,6 +22,7 @@ export class ProductFormComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
+    private productsPromiseService: ProductPromiseService,
     private route: ActivatedRoute,
     private router: Router) { }
 
@@ -52,11 +54,15 @@ export class ProductFormComponent implements OnInit {
     const product = { ...this.product };
 
     if (product.id) {
-      this.productsService.updateProduct(product);
+      this.productsPromiseService.updateProduct(product)
+      .subscribe(
+        savedProduct => this.originalProduct = { ...this.product },
+        error => console.log(error));
     } else {
-      this.productsService.addProduct(product);
+      this.productsPromiseService.addProduct(product);
+      this.originalProduct = { ...this.product };
     }
-    this.originalProduct = { ...this.product };
+
     this.onGoBack();
   }
 
