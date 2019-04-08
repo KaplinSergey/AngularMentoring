@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class EnamPipe implements PipeTransform {
 
-  transform(value: any, enumType?: any): any {
+  transform(value: any, enumType: any): any {
     return enumType[value];
   }
 }
