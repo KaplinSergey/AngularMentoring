@@ -1,24 +1,22 @@
 import { Injectable } from '@angular/core';
-import { LocalStorage } from '../../models/local-storage';
 import { CoreModule } from '../../core.module';
 
 @Injectable({
   providedIn: CoreModule
 })
 export class LocalStorageService {
-  private localStorage: LocalStorage;
 
   constructor() { }
 
-  setItem(item: number) {
-    this.localStorage.item = item;
+  setItem(name: string, item: string) {
+    window.localStorage.setItem(name, item);
   }
 
-  getItem() {
-    return this.localStorage.item;
+  getItem(name: string) {
+    return window.localStorage.removeItem(name);
   }
 
-  removeItem() {
-    this.localStorage.item = 0;
+  removeItem(name: string) {
+    window.localStorage.removeItem(name);
   }
 }

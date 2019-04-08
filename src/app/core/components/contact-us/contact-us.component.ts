@@ -45,15 +45,15 @@ export class ContactUsComponent implements OnInit {
     this.configOptionsService.set(configObject);
   }
 
-  getLocalStorageItem(): number {
-    return this.localStorage.getItem();
+  getLocalStorageItem(name: string) {
+    return this.localStorage.getItem(name);
   }
 
-  setLocalStorageItem(item: number) {
-    this.localStorage.setItem(item);
+  setLocalStorageItem(name: string, item: string) {
+    this.localStorage.setItem(name, item);
   }
 
-  removeLocalStorageItem() {
-    this.localStorage.removeItem();
+  removeLocalStorageItem(name: string) {
+    this.localStorage.removeItem(name);
   }
 }

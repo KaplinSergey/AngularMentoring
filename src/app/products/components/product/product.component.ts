@@ -1,36 +1,45 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ProductModel } from '../../models/product-model';
-import { ChangeDetectionStrategy } from '@angular/core';
 import { Category } from '../../models/category';
+import { ProductsService } from '../../services/products.service';
+
+import { ActivatedRoute, Params, Router } from '@angular/router';
+// rxjs
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product', // <app-product></app-product>
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductComponent implements OnInit {
-  @Input()
+export class ProductComponent implements OnInit, OnDestroy {
   product: ProductModel;
   Category = Category;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private productsService: ProductsService) { }
 
   ngOnInit() {
+    this.product = new ProductModel();
+
+    this.route.paramMap
+    .pipe(
+      switchMap((params: Params) => {
+        return params.get('productID')
+          ? this.productsService.getProduct(+params.get('productID'))
+          : Promise.resolve(null);
+      }))
+    .subscribe(
+      product => this.product = { ...product },
+      err => console.log(err)
+    );
+
+    this.router.navigate([{ outlets: { feedback: ['feedback'] } }]);
   }
 
-  setClasses() {
-    return {
-      panel: true,
-      'panel-default': true,
-      'not-available': !this.product.isAvailable,
-      available: this.product.isAvailable,
-    };
-  }
-
-  setStyles() {
-    return {
-      'list-style-type': 'upper-roman'
-    };
+  ngOnDestroy(): void {
+    this.router.navigate([{ outlets: { feedback: null} }]);
   }
 }

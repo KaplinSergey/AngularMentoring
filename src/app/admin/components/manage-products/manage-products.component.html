@@ -1,0 +1,12 @@
+<h2>Products list</h2>
+<ul>
+  <li *ngFor="let product of products | async">
+    <app-product-list-item [product] = product></app-product-list-item>
+    <div>
+      <button (click)="onUpdate(product)">Update</button>
+    </div>  
+  </li>
+  <div>
+    <button (click)="onAdd()">Add product</button>
+  </div> 
+</ul>

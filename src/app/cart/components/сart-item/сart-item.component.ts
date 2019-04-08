@@ -38,6 +38,6 @@ export class СartItemComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    alert(`${this.item.product.name} - has been removed from the cart`);
+    // alert(`${this.item.product.name} - has been removed from the cart`);
   }
 }

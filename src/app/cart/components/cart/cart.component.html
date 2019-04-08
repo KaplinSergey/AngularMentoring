@@ -1,12 +1,19 @@
 <h2>Your shopping cart</h2>
-<h4>Order by</h4>
-<select [(ngModel)]="selectedOrder">
-  <option *ngFor="let order of orders" [ngValue]="order">{{order}}</option>
-</select>
-<ol>
-  <li *ngFor="let item of cart.items | orderBy: selectedOrder">
-    <app-cart-item [item] = item (delete)="onDelete($event)"></app-cart-item>
-  </li>
-</ol>
-<h4>Total count of products: {{getProductsCount()}}</h4>
-<h3>Total cost: {{getFullProductsPrice()}}$</h3>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <label>Order by</label>
+    <select [(ngModel)]="selectedOrder" class="form-control">
+      <option *ngFor="let order of orders" [ngValue]="order">{{order}}</option>
+    </select>
+  </div>
+  <ol>
+    <li *ngFor="let item of cart.items | orderBy: selectedOrder">
+      <app-cart-item [item]=item (delete)="onDelete($event)"></app-cart-item>
+    </li>
+  </ol>
+  <h4>Total count of products: {{getProductsCount()}}</h4>
+  <h3>Total cost: {{getFullProductsPrice()}}$</h3>
+  <div class="panel-footer">
+    <button [routerLink]="['/order']">Order</button>
+  </div>
+</div>

@@ -16,10 +16,6 @@ export class ConfigOptionsService {
   }
 
   set(configModel) {
-    for (const prop in configModel) {
-      if (this.config.hasOwnProperty(prop)) {
-         this.config[prop] = configModel[prop];
-      }
-    }
+    Object.assign(this.config, configModel);
   }
 }
