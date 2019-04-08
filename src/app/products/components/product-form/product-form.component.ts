@@ -30,7 +30,7 @@ export class ProductFormComponent implements OnInit {
     this.route.data.pipe(pluck('product')).subscribe((product: ProductModel) => {
       this.product = { ...product };
       this.originalProduct = { ...product };
-      });
+    });
 
     // this.product = new ProductModel();
 
@@ -55,9 +55,9 @@ export class ProductFormComponent implements OnInit {
 
     if (product.id) {
       this.productsPromiseService.updateProduct(product)
-      .subscribe(
-        savedProduct => this.originalProduct = { ...this.product },
-        error => console.log(error));
+        .subscribe(
+          savedProduct => this.originalProduct = { ...savedProduct },
+          error => console.log(error));
     } else {
       this.productsPromiseService.addProduct(product);
       this.originalProduct = { ...this.product };
@@ -74,5 +74,4 @@ export class ProductFormComponent implements OnInit {
     const keys = Object.keys(this.category);
     return keys.slice(keys.length / 2);
   }
-
 }
