@@ -6,6 +6,7 @@ import { ProductsService } from '../services/products.service';
 // rxjs
 import { Observable, of, from } from 'rxjs';
 import { map, catchError, take } from 'rxjs/operators';
+import { ProductPromiseService } from '../services/products.promise.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class ProductResolveGuard implements Resolve<ProductModel> {
 
   constructor(
     private productsService: ProductsService,
+    private productsPromiseService: ProductPromiseService,
     private router: Router
   ) { }
 
@@ -25,7 +27,7 @@ export class ProductResolveGuard implements Resolve<ProductModel> {
     }
 
     const id = +route.paramMap.get('productID');
-    return from(this.productsService.getProduct(id)).pipe(
+    return from(this.productsPromiseService.getProduct(id)).pipe(
       map((product: ProductModel) => {
         if (product) {
           return product;

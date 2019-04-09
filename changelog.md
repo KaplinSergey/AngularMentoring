@@ -32,3 +32,9 @@ Added routing modules and router-outlets
 Added canActivate and resolve guards
 Added lazy-loading for admin module
 Added  localstorage/json file
+
+Completed Task 6
+
+Added services using HttpClient
+Added 'TimingInterceptor'
+Added AppSettings service

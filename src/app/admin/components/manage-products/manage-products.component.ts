@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductModel } from '../../../products/models/product-model';
-import { ProductsService } from '../../../products/services/products.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ProductPromiseService } from '../../../products/services/products.promise.service';
 
 
 @Component({
@@ -13,7 +13,7 @@ export class ManageProductsComponent implements OnInit {
   products: Promise<Array<ProductModel>>;
 
   constructor(
-    private productsService: ProductsService,
+    private productsService: ProductPromiseService,
     private router: Router,
     private route: ActivatedRoute) { }
 

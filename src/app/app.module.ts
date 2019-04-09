@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -11,7 +11,13 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { LayoutModule } from './layout/layout.module';
 //  import { AdminModule } from './admin/admin.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TimingInterceptor } from './core/interceptors/timing.interceptor';
+import { AppSettingsService } from './core/services/appsettings/app.settings.service';
+
+export function initializeApp(appSettingsService: AppSettingsService) {
+  return () => appSettingsService.loadSettings();
+}
 
 @NgModule({
   declarations: [
@@ -30,7 +36,18 @@ import { HttpClientModule } from '@angular/common/http';
     // MUST BE LAST
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TimingInterceptor,
+    multi: true,
+  },
+   AppSettingsService,
+  {
+    provide: APP_INITIALIZER,
+    useFactory: initializeApp,
+    deps: [AppSettingsService], multi: true
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule {

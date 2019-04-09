@@ -1,0 +1,4 @@
+{
+    "useAuthentication": true,
+    "environment": "dev"
+}
