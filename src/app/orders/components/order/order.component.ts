@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
 import { OrderModel } from '../../models/order';
 
 @Component({
@@ -8,22 +7,12 @@ import { OrderModel } from '../../models/order';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
+  @Input()
   order: OrderModel;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
-    this.order = new OrderModel(null, '', '', '', '');
   }
 
-  onGoBack() {
-    this.router.navigate(['./../'], { relativeTo: this.route });
-  }
-
-  onSaveOrder() {
-    alert('Your order is accepted!');
-    this.onGoBack();
-  }
 }

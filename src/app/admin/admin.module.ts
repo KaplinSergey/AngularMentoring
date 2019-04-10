@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule, adminRouterComponents } from './admin-routing.module';
 import { ProductsModule } from '../products/products.module';
 import { LayoutModule } from '../layout/layout.module';
+import { OrdersModule } from '../orders/orders.module';
 
 @NgModule({
   declarations: [adminRouterComponents],
@@ -11,7 +12,8 @@ import { LayoutModule } from '../layout/layout.module';
     CommonModule,
     AdminRoutingModule,
     ProductsModule,
-    LayoutModule
+    LayoutModule,
+    OrdersModule
   ]
 })
 export class AdminModule { }

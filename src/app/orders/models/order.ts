@@ -1,3 +1,5 @@
+import { CartItemModel } from '../../cart/models/cart-item-model';
+
 export class OrderModel {
     constructor(
         public id: number,
@@ -5,5 +7,6 @@ export class OrderModel {
         public lastName: string,
         public address: string,
         public phone: string,
+        public items?: Array<CartItemModel>
     ) { }
 }
