@@ -1,6 +1,6 @@
 <h2>Products list</h2>
 <ul>
-  <li *ngFor="let order of orders | async">
+  <li *ngFor="let order of (ordersState$ | async).data">
     <app-order [order] = order></app-order>
   </li>
 </ul>
