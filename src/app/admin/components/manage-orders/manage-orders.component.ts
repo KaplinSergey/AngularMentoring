@@ -5,6 +5,7 @@ import { OrderService } from '../../../orders/services/order.service';
 // @Ngrx
 import { Store, select } from '@ngrx/store';
 import { AppState, OrdersState } from './../../../core/+store';
+import * as OrderActions from './../../../core/+store/orders/orders.actions';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -24,6 +25,10 @@ export class ManageOrdersComponent implements OnInit {
     console.log('We have a store! ', this.store);
     this.ordersState$ = this.store.pipe(select('orders'));
     // this.orders = this.orderService.getOrders();
+  }
+
+  onCompleteOrder(order: OrderModel): void {
+    this.store.dispatch(new OrderActions.DoneOrder(order));
   }
 
 }

@@ -9,14 +9,14 @@ export interface OrdersState {
 
 export const initialOrdersState: OrdersState = {
     data: [
-        new OrderModel(1, 'Ivan', 'Ivanov', 'Minsk', '102-367-89',
+        new OrderModel(1, false, 'Ivan', 'Ivanov', 'Minsk', '102-367-89',
             [
                 new CartItemModel(new ProductModel(1, 'Angular for dummies',
                     'Angular Tutorial: Learn Angular from scratch step by step',
                     100, Category.Books, true, ['Amazon', 'Ebay'], [10, 9, 8], new Date(2019, 2, 4, 3, 15)),
                     2)
             ]),
-        new OrderModel(2, 'Petr', 'Petrov', 'Kiev', '165-389-89',
+        new OrderModel(2, false, 'Petr', 'Petrov', 'Kiev', '165-389-89',
             [
                 new CartItemModel(new ProductModel(1, 'Angular for dummies',
                     'Angular Tutorial: Learn Angular from scratch step by step',

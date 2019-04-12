@@ -7,7 +7,8 @@ export enum OrdersActionTypes {
   GET_ORDER = '[Orders] GET_ORDER',
   CREATE_ORDER = '[Orders] CREATE_ORDER',
   UPDATE_ORDER = '[Orders] UPDATE_ORDER',
-  DELETE_ORDER = '[Orders] DELETE_ORDER'
+  DELETE_ORDER = '[Orders] DELETE_ORDER',
+  DONE_ORDER = '[Orders] DONE_ORDER'
 }
 
 export class GetOrders implements Action {
@@ -34,9 +35,15 @@ export class DeleteOrder implements Action {
   constructor(public payload: OrderModel) { }
 }
 
+export class DoneOrder implements Action {
+  readonly type = OrdersActionTypes.DONE_ORDER;
+  constructor(public payload: OrderModel) { }
+}
+
 export type OrdersActions
   = GetOrders
   | GetOrder
   | CreateOrder
   | UpdateOrder
-  | DeleteOrder;
+  | DeleteOrder
+  | DoneOrder;

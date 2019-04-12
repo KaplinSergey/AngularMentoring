@@ -8,7 +8,8 @@ import { OrderItemsTabelComponent } from './components/order-items-tabel/order-i
 import { OrderComponent } from './components/order/order.component';
 
 import { StoreModule } from '@ngrx/store';
-import { ordersReducer } from './../core/+store';
+import { OrdersEffects, ordersReducer } from './../core/+store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [OrderFormComponent, OrderListComponent, OrderItemsTabelComponent, OrderComponent],
@@ -16,7 +17,8 @@ import { ordersReducer } from './../core/+store';
     CommonModule,
     StoreModule.forFeature('orders', ordersReducer),
     FormsModule,
-    OrdersRoutingModule
+    OrdersRoutingModule,
+    EffectsModule.forFeature([OrdersEffects])
   ],
   exports: [
     OrderComponent,

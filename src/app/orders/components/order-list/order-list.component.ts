@@ -22,4 +22,7 @@ export class OrderListComponent implements OnInit {
 
     console.log('We have a store! ', this.store);
   }
+
+  onCompleteOrder(order: OrderModel): void {
+  }
 }

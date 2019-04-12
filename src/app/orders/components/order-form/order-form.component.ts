@@ -17,7 +17,7 @@ export class OrderFormComponent implements OnInit {
     private cart: CartService) { }
 
   ngOnInit() {
-    this.order = new OrderModel(null, '', '', '', '', this.cart.getCart().items);
+    this.order = new OrderModel(null, false, '', '', '', '', this.cart.getCart().items);
   }
 
   onGoBack() {

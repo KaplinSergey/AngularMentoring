@@ -1,16 +1,24 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Order:</div>
-  <div class="panel-body">
-      <ul>
-          <li>Id: {{order.id}}</li>
-          <li>First name: {{order.firstName}}</li>
-          <li>Last name: {{order.lastName}}</li>
-          <li>Address: {{order.address}}</li>
-          <li>Phone: {{order.phone}}</li>
-          <li>Products: <app-order-items [orderItems] = order.items></app-order-items></li>
-      </ul>
-  </div>
-  <div class="panel-footer">
-      <button [routerLink]="['/order', order.id]">Edit</button>
-  </div>
+    <div class="panel-heading">Order:</div>
+    <div class="panel-body">
+        <ul>
+            <li>Id: {{order.id}}</li>
+            <li>Is done: {{order.done}}</li>
+            <li>First name: {{order.firstName}}</li>
+            <li>Last name: {{order.lastName}}</li>
+            <li>Address: {{order.address}}</li>
+            <li>Phone: {{order.phone}}</li>
+            <li>Products:
+                <app-order-items [orderItems]=o rder.items></app-order-items>
+            </li>
+        </ul>
+    </div>
+    <div class="panel-footer">
+            <button class="btn btn-primary btn-sm"
+            (click)="onCompleteOrder()"
+            [disabled]="order.done">
+            Done
+        </button>
+        <button [routerLink]="['/order', order.id]">Edit</button>
+    </div>
 </div>
