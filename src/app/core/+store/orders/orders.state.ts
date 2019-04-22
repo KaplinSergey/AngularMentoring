@@ -5,27 +5,16 @@ import { Category } from '../../../products/models/category';
 
 export interface OrdersState {
     data: ReadonlyArray<OrderModel>;
+    selectedOrder: Readonly<OrderModel>;
+    readonly loading: boolean;
+    readonly loaded: boolean;
+    readonly error: Error | string;
 }
 
 export const initialOrdersState: OrdersState = {
-    data: [
-        new OrderModel(1, false, 'Ivan', 'Ivanov', 'Minsk', '102-367-89',
-            [
-                new CartItemModel(new ProductModel(1, 'Angular for dummies',
-                    'Angular Tutorial: Learn Angular from scratch step by step',
-                    100, Category.Books, true, ['Amazon', 'Ebay'], [10, 9, 8], new Date(2019, 2, 4, 3, 15)),
-                    2)
-            ]),
-        new OrderModel(2, false, 'Petr', 'Petrov', 'Kiev', '165-389-89',
-            [
-                new CartItemModel(new ProductModel(1, 'Angular for dummies',
-                    'Angular Tutorial: Learn Angular from scratch step by step',
-                    100, Category.Books, true, ['Amazon', 'Ebay'], [10, 9, 8], new Date(2019, 2, 4, 3, 15)),
-                    1),
-                new CartItemModel(new ProductModel(2, 'C# in Depth',
-                    'Third Edition has been thoroughly revised to cover the new features of C# 5',
-                    200, Category.Books, false, ['Amazon'], [10, 9, 8], new Date(2019, 1, 5, 3, 25)),
-                    1)
-            ])
-    ]
+    data: [],
+    selectedOrder: null,
+    loading: false,
+    loaded: false,
+    error: null
 };

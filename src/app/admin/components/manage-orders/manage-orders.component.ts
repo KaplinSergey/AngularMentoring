@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderModel } from '../../../orders/models/order';
-import { OrderService } from '../../../orders/services/order.service';
 
 // @Ngrx
 import { Store, select } from '@ngrx/store';
-import { AppState, OrdersState } from './../../../core/+store';
-import * as OrderActions from './../../../core/+store/orders/orders.actions';
+import { AppState, getOrdersData, getOrdersError } from './../../../core/+store';
+import * as OrdersActions from './../../../core/+store/orders/orders.actions';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -14,21 +13,22 @@ import { Observable } from 'rxjs';
   styleUrls: ['./manage-orders.component.css']
 })
 export class ManageOrdersComponent implements OnInit {
-  orders: Promise<Array<OrderModel>>;
-  ordersState$: Observable<OrdersState>;
+  orders$: Observable<ReadonlyArray<OrderModel>>;
+  ordersError$: Observable<Error | string>;
 
-  constructor(
-    private orderService: OrderService,
-    private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     console.log('We have a store! ', this.store);
-    this.ordersState$ = this.store.pipe(select('orders'));
-    // this.orders = this.orderService.getOrders();
+    this.orders$ = this.store.pipe(select(getOrdersData));
+    this.ordersError$ = this.store.pipe(select(getOrdersError));
+
+    this.store.dispatch(new OrdersActions.GetOrders());
   }
 
   onCompleteOrder(order: OrderModel): void {
-    this.store.dispatch(new OrderActions.DoneOrder(order));
+    const doneOrder = {...order, done: true};
+    this.store.dispatch(new OrdersActions.UpdateOrder(doneOrder));
   }
 
 }
