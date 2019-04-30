@@ -38,3 +38,8 @@ Completed Task 6
 Added services using HttpClient
 Added 'TimingInterceptor'
 Added AppSettings service
+
+Completed Task 7
+
+Added @ngrx/store, @ngrx/effects, @ngrx/router-store, @ngrx/entity packages
+Added state, reducer, selectors, router navigations, router store, entity state
