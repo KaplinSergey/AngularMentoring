@@ -12,7 +12,7 @@ export class LocalStorageService {
     window.localStorage.setItem(name, item);
   }
 
-  getItem(name: string) {
+  getItem(name: string): string {
     return window.localStorage.getItem(name);
   }
 

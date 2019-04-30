@@ -4,15 +4,13 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { EnamPipe } from './pipes/enam.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
 
+const exportedEntities = [HighlightDirective, EnamPipe, OrderByPipe];
+
 @NgModule({
-  declarations: [HighlightDirective, EnamPipe, OrderByPipe],
+  declarations: [...exportedEntities],
   imports: [
     CommonModule
   ],
-  exports: [
-    HighlightDirective,
-    EnamPipe,
-    OrderByPipe
-  ]
+  exports: [...exportedEntities]
 })
 export class SharedModule { }
