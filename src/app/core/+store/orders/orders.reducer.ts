@@ -1,5 +1,5 @@
 import { OrdersActions, OrdersActionTypes } from './orders.actions';
-import { OrdersState, initialOrdersState } from './orders.state';
+import { orderAdapter, OrdersState, initialOrdersState } from './orders.state';
 import { OrderModel } from './../../../orders/models/order';
 
 export function ordersReducer(
@@ -15,13 +15,12 @@ export function ordersReducer(
     case OrdersActionTypes.GET_ORDERS_SUCCESS: {
       console.log('GET_ORDERS_SUCCESS action being handled!');
       const data = [...<Array<OrderModel>>action.payload];
-      return {
+      return orderAdapter.addAll(data, {
         ...state,
-        data,
         loading: false,
         loaded: true,
         selectedOrder: null
-      };
+      });
     }
     case OrdersActionTypes.GET_ORDERS_ERROR: {
       console.log('GET_ORDERS_ERROR action being handled!');
@@ -40,11 +39,8 @@ export function ordersReducer(
     case OrdersActionTypes.CREATE_ORDER_SUCCESS: {
       console.log('CREATE_TASK_SUCCESS action being handled!');
       const order = { ...<OrderModel>action.payload };
-      const data = [...state.data, order];
-      return {
-        ...state,
-        data
-      };
+      // const data = [...state.data, order];
+      return orderAdapter.addOne(order, state);
     }
     case OrdersActionTypes.UPDATE_ORDER: {
       console.log('UPDATE_ORDER action being handled!');
@@ -53,13 +49,13 @@ export function ordersReducer(
     case OrdersActionTypes.UPDATE_ORDER_SUCCESS: {
       console.log('UPDATE_ORDERS_SUCCESS action being handled!');
       const order = { ...<OrderModel>action.payload };
-      const data = [...state.data];
-      const index = data.findIndex(o => o.id === order.id);
-      data[index] = order;
-      return {
-        ...state,
-        data
-      };
+      // const data = [...state.data];
+      // const index = data.findIndex(o => o.id === order.id);
+      // data[index] = order;
+      return orderAdapter.updateOne({
+        id: order.id,
+        changes: order
+      }, state);
     }
     case OrdersActionTypes.UPDATE_ORDER_ERROR: {
       console.log('UPDATE_TASK_ERROR action being handled!');
