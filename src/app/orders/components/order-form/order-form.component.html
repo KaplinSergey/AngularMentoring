@@ -22,6 +22,10 @@
         <label for="phone">Phone</label>
         <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" required [(ngModel)]="order.phone">
       </div>
+      <div class="form-group">
+        <label for="products">Products</label>
+        <app-order-items [orderItems]=order.items></app-order-items>
+      </div>
       <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save
       </button>
       <button class="btn btn-primary" type="button" (click)="onGoBack()">Back

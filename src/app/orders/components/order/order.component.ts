@@ -12,6 +12,7 @@ export class OrderComponent implements OnInit {
   order: OrderModel;
 
   @Output() completeOrder = new EventEmitter<OrderModel>();
+  @Output() editOrder = new EventEmitter<OrderModel>();
 
   constructor() { }
 
@@ -20,5 +21,9 @@ export class OrderComponent implements OnInit {
 
   onCompleteOrder(): void {
     this.completeOrder.emit(this.order);
+  }
+
+  onEditOrder(): void {
+    this.editOrder.emit(this.order);
   }
 }

@@ -6,6 +6,7 @@ import { Store, select } from '@ngrx/store';
 import { AppState, getOrdersData, getOrdersError } from './../../../core/+store';
 import * as OrdersActions from './../../../core/+store/orders/orders.actions';
 import { Observable } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-manage-orders',
@@ -16,7 +17,10 @@ export class ManageOrdersComponent implements OnInit {
   orders$: Observable<ReadonlyArray<OrderModel>>;
   ordersError$: Observable<Error | string>;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(
+    private store: Store<AppState>,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     console.log('We have a store! ', this.store);
@@ -31,4 +35,8 @@ export class ManageOrdersComponent implements OnInit {
     this.store.dispatch(new OrdersActions.UpdateOrder(doneOrder));
   }
 
+  onEditOrder(order: OrderModel): void {
+    const link = ['edit', order.id];
+    this.router.navigate(link, {relativeTo: this.route});
+  }
 }

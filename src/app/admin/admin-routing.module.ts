@@ -6,6 +6,7 @@ import { AdminDashboardComponent, ManageOrdersComponent, ManageProductsComponent
 import { AuthGuard } from './../core';
 import { ProductFormComponent } from '../products/components/product-form/product-form.component';
 import { ProductResolveGuard } from '../products';
+import { OrderFormComponent } from '../orders/components/order-form/order-form.component';
 
 const adminRoutes: Routes = [{
   path: '',
@@ -15,7 +16,13 @@ const adminRoutes: Routes = [{
     {
       path: '',
       children: [
-        { path: 'orders', component: ManageOrdersComponent },
+        {
+          path: 'orders',
+          children: [
+            { path: 'edit/:orderID', component: OrderFormComponent },
+            { path: '', component: ManageOrdersComponent }
+          ]
+        },
         {
           path: 'products',
           children: [

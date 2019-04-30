@@ -8,6 +8,8 @@ export enum OrdersActionTypes {
   GET_ORDERS_SUCCESS = '[Orders] GET_ORDERS_SUCCESS',
   GET_ORDERS_ERROR = '[Orders] GET_ORDERS_ERROR',
   CREATE_ORDER = '[Orders] CREATE_ORDER',
+  CREATE_ORDER_SUCCESS = '[Orders] CREATE_ORDER_SUCCESS',
+  CREATE_ORDER_ERROR = '[Orders] CREATE_ORDER_ERROR',
   UPDATE_ORDER = '[Orders] UPDATE_ORDER',
   UPDATE_ORDER_SUCCESS = '[Orders] UPDATE_ORDER_SUCCESS',
   UPDATE_ORDER_ERROR = '[Orders] UPDATE_ORDER_ERROR',
@@ -38,17 +40,27 @@ export class CreateOrder implements Action {
   constructor(public payload: OrderModel) { }
 }
 
+export class CreateOrderSuccess implements Action {
+  readonly type = OrdersActionTypes.CREATE_ORDER_SUCCESS;
+  constructor(public payload: OrderModel) { }
+}
+
+export class CreateOrderError implements Action {
+  readonly type = OrdersActionTypes.CREATE_ORDER_ERROR;
+  constructor(public payload: Error | string) { }
+}
+
 export class UpdateOrder implements Action {
   readonly type = OrdersActionTypes.UPDATE_ORDER;
   constructor(public payload: OrderModel) { }
 }
 
-export class UpdateTaskSuccess implements Action {
+export class UpdateOrderSuccess implements Action {
   readonly type = OrdersActionTypes.UPDATE_ORDER_SUCCESS;
   constructor(public payload: OrderModel) { }
 }
 
-export class UpdateTaskError implements Action {
+export class UpdateOrderError implements Action {
   readonly type = OrdersActionTypes.UPDATE_ORDER_ERROR;
   constructor(public payload: Error | string) { }
 }
@@ -64,7 +76,9 @@ export type OrdersActions
   | GetOrdersError
   | GetOrder
   | CreateOrder
+  | CreateOrderSuccess
+  | CreateOrderError
   | UpdateOrder
-  | UpdateTaskSuccess
-  | UpdateTaskError
+  | UpdateOrderSuccess
+  | UpdateOrderError
   | DeleteOrder;

@@ -37,6 +37,15 @@ export function ordersReducer(
       console.log('CREATE_ORDER action being handled!');
       return { ...state };
     }
+    case OrdersActionTypes.CREATE_ORDER_SUCCESS: {
+      console.log('CREATE_TASK_SUCCESS action being handled!');
+      const order = { ...<OrderModel>action.payload };
+      const data = [...state.data, order];
+      return {
+        ...state,
+        data
+      };
+    }
     case OrdersActionTypes.UPDATE_ORDER: {
       console.log('UPDATE_ORDER action being handled!');
       return { ...state };

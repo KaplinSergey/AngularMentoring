@@ -49,4 +49,17 @@ export class OrderService {
       }
     });
   }
+
+  add(order: OrderModel): Promise<OrderModel> {
+    return new Promise<OrderModel>((resolve, reject) => {
+      const newOrderID = this.data[this.data.length - 1].id + 1;
+      order.id = newOrderID;
+
+      if (this.data.push(order)) {
+        resolve(this.data[this.data.length - 1]);
+      } else {
+        reject('Order not created');
+      }
+    });
+  }
 }

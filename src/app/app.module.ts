@@ -14,6 +14,10 @@ import { LayoutModule } from './layout/layout.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TimingInterceptor } from './core/interceptors/timing.interceptor';
 import { AppSettingsService } from './core/services/appsettings/app.settings.service';
+import { Injector } from '@angular/core';
+import { ServiceLocator } from './core/services/locator.service';
+
+
 
 export function initializeApp(appSettingsService: AppSettingsService) {
   return () => appSettingsService.loadSettings();
@@ -41,17 +45,20 @@ export function initializeApp(appSettingsService: AppSettingsService) {
     useClass: TimingInterceptor,
     multi: true,
   },
-   AppSettingsService,
+    AppSettingsService,
   {
     provide: APP_INITIALIZER,
     useFactory: initializeApp,
     deps: [AppSettingsService], multi: true
   }
-],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(router: Router) {
+  constructor(
+    router: Router,
+    private injector: Injector) {
+    ServiceLocator.injector = this.injector;
     console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
   }
 }

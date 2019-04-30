@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import * as RouterActions from './../../../core/+store/router/router.actions';
+import * as OrdersActions from './../../../core/+store/orders/orders.actions';
 import { OrderModel } from '../../models/order';
 import { CartService } from '../../../cart/services/cart.service';
+import { AppState, getSelectedOrderByUrl } from '../../../core/+store';
+
+import { Subscription } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-order-form',
@@ -11,21 +16,36 @@ import { CartService } from '../../../cart/services/cart.service';
 export class OrderFormComponent implements OnInit {
   order: OrderModel;
 
+  private sub: Subscription;
+
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private cart: CartService) { }
+    private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.order = new OrderModel(null, false, '', '', '', '', this.cart.getCart().items);
+    this.sub = this.store
+      .pipe(select(getSelectedOrderByUrl))
+      .subscribe(order => this.order = order);
   }
 
   onGoBack() {
-    this.router.navigate(['./../'], { relativeTo: this.route });
+    if (this.order.id) {
+      this.store.dispatch(new RouterActions.Go({
+        path: ['/admin/orders']
+      }));
+    } else {
+      this.store.dispatch(new RouterActions.Go({
+        path: ['/cart']
+      }));
+    }
   }
 
   onSaveOrder() {
-    alert('Your order is accepted!');
-    this.onGoBack();
+    const order = { ...this.order };
+
+    if (order.id) {
+      this.store.dispatch(new OrdersActions.UpdateOrder(order));
+    } else {
+      this.store.dispatch(new OrdersActions.CreateOrder(order));
+    }
   }
 }

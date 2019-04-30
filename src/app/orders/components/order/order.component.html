@@ -9,7 +9,7 @@
             <li>Address: {{order.address}}</li>
             <li>Phone: {{order.phone}}</li>
             <li>Products:
-                <app-order-items [orderItems]=o rder.items></app-order-items>
+                <app-order-items [orderItems]=order.items></app-order-items>
             </li>
         </ul>
     </div>
@@ -19,6 +19,6 @@
             [disabled]="order.done">
             Done
         </button>
-        <button [routerLink]="['/order', order.id]">Edit</button>
+        <button (click)="onEditOrder()">Edit</button>
     </div>
 </div>
