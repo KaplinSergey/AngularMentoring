@@ -1,3 +1,9 @@
-<p>
-  manage-orders works!
-</p>
+<h2>Orders list</h2>
+<ul>
+  <p *ngIf="(ordersError$ | async) as value">{{value}}</p>
+  <li *ngFor="let order of (orders$ | async)">
+    <app-order [order] = order
+     (completeOrder)="onCompleteOrder($event)"
+     (editOrder)="onEditOrder($event)"></app-order>
+  </li>
+</ul>

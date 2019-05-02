@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OrderModel } from '../../models/order';
+
 
 @Component({
   selector: 'app-order',
@@ -8,22 +8,22 @@ import { OrderModel } from '../../models/order';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
+  @Input()
   order: OrderModel;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router) { }
+  @Output() completeOrder = new EventEmitter<OrderModel>();
+  @Output() editOrder = new EventEmitter<OrderModel>();
+
+  constructor() { }
 
   ngOnInit() {
-    this.order = new OrderModel(null, '', '', '', '');
   }
 
-  onGoBack() {
-    this.router.navigate(['./../'], { relativeTo: this.route });
+  onCompleteOrder(): void {
+    this.completeOrder.emit(this.order);
   }
 
-  onSaveOrder() {
-    alert('Your order is accepted!');
-    this.onGoBack();
+  onEditOrder(): void {
+    this.editOrder.emit(this.order);
   }
 }

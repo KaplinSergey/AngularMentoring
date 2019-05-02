@@ -12,8 +12,8 @@ export class LocalStorageService {
     window.localStorage.setItem(name, item);
   }
 
-  getItem(name: string) {
-    return window.localStorage.removeItem(name);
+  getItem(name: string): string {
+    return window.localStorage.getItem(name);
   }
 
   removeItem(name: string) {

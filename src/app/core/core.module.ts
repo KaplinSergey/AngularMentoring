@@ -5,11 +5,13 @@ import { ChangeHostElementDirective } from './directives/change-host-element.dir
 import { TextClickDirective } from './directives/text-click.directive';
 import { LocalStorageService } from './services/localstorage/local-storage.service';
 import { AppSettingsService } from './services/appsettings/app.settings.service';
+import { CoreStoreModule } from './+store/core-store.module';
 
 @NgModule({
   declarations: [ContactUsComponent, ChangeHostElementDirective, TextClickDirective],
   imports: [
-    CommonModule
+    CommonModule,
+    CoreStoreModule
   ],
   exports: [ContactUsComponent]
 })

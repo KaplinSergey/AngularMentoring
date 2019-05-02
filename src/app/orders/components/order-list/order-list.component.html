@@ -1,0 +1,6 @@
+<h2>Products list</h2>
+<ul>
+  <li *ngFor="let order of orders | async">
+    <app-order [order] = order (completeOrder)="onCompleteTask($event)"></app-order>
+  </li>
+</ul>
