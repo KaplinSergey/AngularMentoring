@@ -8,8 +8,8 @@
     <form novalidate (ngSubmit)="onSaveOrder()" [formGroup]="orderForm">
       <div class="form-group" [ngClass]="{'has-error': (orderForm.get('firstName').touched || orderForm.get('firstName').dirty) && !orderForm.get('firstName').valid }">
         <label for="firstName">First Name</label>
-        <input type="text" class="form-control" id="firstNameId" name="firstName" placeholder="First Name (required)" required minlength="3"
-          formControlName="firstName" />
+        <input type="text" class="form-control" id="firstNameId" name="firstName" placeholder={{placeholder.firstName}} formControlName="firstName"
+        />
         <span class="help-block" *ngIf="(orderForm.get('firstName').touched || orderForm.get('firstName').dirty) && orderForm.get('firstName').errors">
           <span *ngIf="orderForm.get('firstName').hasError('required')">
             Please enter your first name.
@@ -21,8 +21,8 @@
       </div>
       <div class="form-group" [ngClass]="{'has-error': (orderForm.get('lastName').touched || orderForm.get('lastName').dirty) && !orderForm.get('lastName').valid }">
         <label for="lastName">Last Name</label>
-        <input type="text" class="form-control" id="lastName" name="lastNameId" placeholder="Last Name (required)" required maxlength="50"
-          formControlName="lastName" />
+        <input type="text" class="form-control" id="lastName" name="lastNameId" placeholder={{placeholder.lastName}} formControlName="lastName"
+        />
       </div>
       <span class="help-block" *ngIf="(orderForm.get('lastName').touched || orderForm.get('lastName').dirty) && orderForm.get('lastName').errors">
         <span *ngIf="orderForm.get('lastName').hasError('required')">
@@ -31,23 +31,21 @@
       </span>
       <div class="form-group" [ngClass]="{'has-error': (orderForm.get('address').touched || orderForm.get('address').dirty) && !orderForm.get('address').valid }">
         <label for="address">Address</label>
-        <input type="text" class="form-control" id="address" name="address" placeholder="Address (required)" required formControlName="address"/>
+        <input type="text" class="form-control" id="address" name="address" placeholder={{placeholder.address}} formControlName="address"
+        />
         <span class="help-block" *ngIf="(orderForm.get('address').touched || orderForm.get('address').dirty) && orderForm.get('address').errors">
           <span *ngIf="orderForm.get('address').hasError('required')">
             Please enter your address.
           </span>
         </span>
       </div>
-      <div class="form-group" [ngClass]="{'has-error': (orderForm.get('phone').touched || orderForm.get('phone').dirty) && !orderForm.get('phone').valid }">
+      <div class="form-group" [ngClass]="{'has-error': validationMessage }">
         <label for="phone">Phone</label>
-        <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone (xx-xxx-xxxx)" required pattern="^\(?[\d]{2}\)?[\s-]?[\d]{3}[\s-]?[\d]{4}$"
-          formControlName="phone" />
+        <input type="text" class="form-control" id="phone" name="phone" placeholder={{placeholder.phone}} formControlName="phone"
+        />
         <span class="help-block" *ngIf="(orderForm.get('phone').touched || orderForm.get('phone').dirty) && orderForm.get('phone').errors">
-          <span *ngIf="orderForm.get('phone').hasError('required')">
-            Please enter your phone.
-          </span>
-          <span *ngIf="orderForm.get('phone').hasError('pattern')">
-            Please enter a valid phone.
+          <span class="help-block" *ngIf="validationMessage">
+            {{ validationMessage }}
           </span>
         </span>
       </div>
