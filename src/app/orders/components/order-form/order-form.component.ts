@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import * as RouterActions from './../../../core/+store/router/router.actions';
 import * as OrdersActions from './../../../core/+store/orders/orders.actions';
 import { OrderModel } from '../../models/order';
@@ -15,16 +16,51 @@ import { Store, select } from '@ngrx/store';
 })
 export class OrderFormComponent implements OnInit {
   order: OrderModel;
+  orderForm: FormGroup;
 
   private sub: Subscription;
 
   constructor(
-    private store: Store<AppState>) { }
+    private store: Store<AppState>,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
     this.sub = this.store
       .pipe(select(getSelectedOrderByUrl))
       .subscribe(order => this.order = order);
+
+    this.buildForm();
+
+    if (this.order.id) {
+      this.setFormValues();
+    }
+  }
+
+  private buildForm() {
+    this.orderForm = this.fb.group({
+      firstName: '',
+      lastName: '',
+      address: '',
+      phone: ['']
+    });
+  }
+
+  private createForm() {
+    this.orderForm = new FormGroup({
+      firstName: new FormControl(),
+      lastName: new FormControl(),
+      address: new FormControl(),
+      phone: new FormControl()
+    });
+  }
+
+  private setFormValues() {
+    this.orderForm.setValue({
+      firstName: this.order.firstName,
+      lastName: this.order.lastName,
+      address: this.order.address,
+      phone: this.order.phone
+    });
   }
 
   onGoBack() {
@@ -40,6 +76,7 @@ export class OrderFormComponent implements OnInit {
   }
 
   onSaveOrder() {
+    Object.assign(this.order, this.orderForm.value)
     const order = { ...this.order };
 
     if (order.id) {

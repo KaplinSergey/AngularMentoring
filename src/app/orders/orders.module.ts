@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { OrdersRoutingModule } from './orders-routing.module';
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { OrderListComponent } from './components/order-list/order-list.component';
@@ -16,7 +16,7 @@ import { EffectsModule } from '@ngrx/effects';
   imports: [
     CommonModule,
     StoreModule.forFeature('orders', ordersReducer),
-    FormsModule,
+    ReactiveFormsModule,
     OrdersRoutingModule,
     EffectsModule.forFeature([OrdersEffects])
   ],
