@@ -43,3 +43,8 @@ Completed Task 7
 
 Added @ngrx/store, @ngrx/effects, @ngrx/router-store, @ngrx/entity packages
 Added state, reducer, selectors, router navigations, router store, entity state
+
+Completed Task 8
+
+Added reactive order-form with validation
+Added the ability to specify multiple phone numbers in the order-form
