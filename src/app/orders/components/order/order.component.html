@@ -7,7 +7,11 @@
             <li>First name: {{order.firstName}}</li>
             <li>Last name: {{order.lastName}}</li>
             <li>Address: {{order.address}}</li>
-            <li>Phone: {{order.phone}}</li>
+            <li>Phone: 
+                <ul *ngFor="let phone of order.phones">
+                    <li>{{phone}}</li>
+                </ul>
+            </li>
             <li>Products:
                 <app-order-items [orderItems]=order.items></app-order-items>
             </li>

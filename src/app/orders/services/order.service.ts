@@ -9,14 +9,14 @@ import { Category } from '../../products/models/category';
 })
 export class OrderService {
   private data = [
-    new OrderModel(1, false, 'Ivan', 'Ivanov', 'Minsk', '102-367-89',
+    new OrderModel(1, false, 'Ivan', 'Ivanov', 'Minsk', ['12-367-8932'],
       [
         new CartItemModel(new ProductModel(1, 'Angular for dummies',
           'Angular Tutorial: Learn Angular from scratch step by step',
           100, Category.Books, true, ['Amazon', 'Ebay'], [10, 9, 8], new Date(2019, 2, 4, 3, 15)),
           2)
       ]),
-    new OrderModel(2, false, 'Petr', 'Petrov', 'Kiev', '165-389-89',
+    new OrderModel(2, false, 'Petr', 'Petrov', 'Kiev', ['16-389-8971', '16-129-8981'],
       [
         new CartItemModel(new ProductModel(1, 'Angular for dummies',
           'Angular Tutorial: Learn Angular from scratch step by step',

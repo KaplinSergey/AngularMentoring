@@ -5,31 +5,75 @@
     </h4>
   </div>
   <div class="panel-body">
-    <form *ngIf="order" (ngSubmit)="onSaveOrder()" id="order-form" #form="ngForm">
-      <div class="form-group">
+    <form novalidate (ngSubmit)="onSaveOrder()" [formGroup]="orderForm">
+      <div class="form-group" [ngClass]="{'has-error': (orderForm.get('firstName').touched || orderForm.get('firstName').dirty) && !orderForm.get('firstName').valid }">
         <label for="firstName">First Name</label>
-        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" required [(ngModel)]="order.firstName">
+        <input type="text" class="form-control" id="firstNameId" name="firstName" placeholder={{placeholder.firstName}} formControlName="firstName"
+        />
+        <span class="help-block" *ngIf="(orderForm.get('firstName').touched || orderForm.get('firstName').dirty) && orderForm.get('firstName').errors">
+          <span *ngIf="orderForm.get('firstName').hasError('required')">
+            Please enter your first name.
+          </span>
+          <span *ngIf="orderForm.get('firstName').hasError('minlength')">
+            The first name must be longer than 3 characters.
+          </span>
+        </span>
       </div>
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-error': (orderForm.get('lastName').touched || orderForm.get('lastName').dirty) && !orderForm.get('lastName').valid }">
         <label for="lastName">Last Name</label>
-        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" [(ngModel)]="order.lastName">
+        <input type="text" class="form-control" id="lastName" name="lastNameId" placeholder={{placeholder.lastName}} formControlName="lastName"
+        />
       </div>
-      <div class="form-group">
+      <span class="help-block" *ngIf="(orderForm.get('lastName').touched || orderForm.get('lastName').dirty) && orderForm.get('lastName').errors">
+        <span *ngIf="orderForm.get('lastName').hasError('required')">
+          Please enter your last name.
+        </span>
+      </span>
+      <div class="form-group" [ngClass]="{'has-error': (orderForm.get('address').touched || orderForm.get('address').dirty) && !orderForm.get('address').valid }">
         <label for="address">Address</label>
-        <input type="text" class="form-control" id="address" name="address" placeholder="Address" required [(ngModel)]="order.address">
+        <input type="text" class="form-control" id="address" name="address" placeholder={{placeholder.address}} formControlName="address"
+        />
+        <span class="help-block" *ngIf="(orderForm.get('address').touched || orderForm.get('address').dirty) && orderForm.get('address').errors">
+          <span *ngIf="orderForm.get('address').hasError('required')">
+            Please enter your address.
+          </span>
+        </span>
+      </div>
+      <div formArrayName="phones">
+        <div *ngFor="let phone of phones.controls; let i = index" [formGroupName]="i">
+          <div class="form-group" [ngClass]="{'has-error': validationMessages[i] }">
+            <label attr.for="{{'phoneId' + i}}">Phone</label>
+            <input type="text" class="form-control" id="{{'phoneId' + i}}" name="phone" placeholder={{placeholder.phone}} formControlName="phone"
+            />
+            <span class="help-block" *ngIf="(this.getPhone(i).touched || this.getPhone(i).dirty) && this.getPhone(i).errors">
+              <span *ngIf="validationMessages[i]">
+                {{ validationMessages[i] }}
+              </span>
+            </span>
+            <button *ngIf="i > 0" class="btn btn-danger" type="button" (click)="onDeletePhone(i)">
+              Delete
+            </button>
+          </div>        
+        </div>
       </div>
       <div class="form-group">
-        <label for="phone">Phone</label>
-        <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" required [(ngModel)]="order.phone">
+          <button class="btn btn-success" type="button" (click)="onAddPhone()">
+            Add Another Phone
+          </button>
       </div>
       <div class="form-group">
         <label for="products">Products</label>
         <app-order-items [orderItems]=order.items></app-order-items>
       </div>
-      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save
+      <button type="submit" class="btn btn-primary" [disabled]="!orderForm.valid">Save
       </button>
       <button class="btn btn-primary" type="button" (click)="onGoBack()">Back
       </button>
+      <br>Dirty: {{ orderForm.dirty }}
+      <br>Touched: {{ orderForm.touched }}
+      <br>Valid: {{ orderForm.valid }}
+      <br>Value: {{ orderForm.value | json }}
+      <br>Form Status: {{orderForm.status }}
     </form>
   </div>
 </div>

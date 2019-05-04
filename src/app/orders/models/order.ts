@@ -7,7 +7,7 @@ export class OrderModel {
         public firstName: string,
         public lastName: string,
         public address: string,
-        public phone: string,
+        public phones: Array<string>,
         public items?: Array<CartItemModel>
     ) { }
 }
