@@ -39,15 +39,27 @@
           </span>
         </span>
       </div>
-      <div class="form-group" [ngClass]="{'has-error': validationMessage }">
-        <label for="phone">Phone</label>
-        <input type="text" class="form-control" id="phone" name="phone" placeholder={{placeholder.phone}} formControlName="phone"
-        />
-        <span class="help-block" *ngIf="(orderForm.get('phone').touched || orderForm.get('phone').dirty) && orderForm.get('phone').errors">
-          <span class="help-block" *ngIf="validationMessage">
-            {{ validationMessage }}
-          </span>
-        </span>
+      <div formArrayName="phones">
+        <div *ngFor="let phone of phones.controls; let i = index" [formGroupName]="i">
+          <div class="form-group" [ngClass]="{'has-error': validationMessages[i] }">
+            <label attr.for="{{'phoneId' + i}}">Phone</label>
+            <input type="text" class="form-control" id="{{'phoneId' + i}}" name="phone" placeholder={{placeholder.phone}} formControlName="phone"
+            />
+            <span class="help-block" *ngIf="(this.getPhone(i).touched || this.getPhone(i).dirty) && this.getPhone(i).errors">
+              <span *ngIf="validationMessages[i]">
+                {{ validationMessages[i] }}
+              </span>
+            </span>
+            <button *ngIf="i > 0" class="btn btn-danger" type="button" (click)="onDeletePhone(i)">
+              Delete
+            </button>
+          </div>        
+        </div>
+      </div>
+      <div class="form-group">
+          <button class="btn btn-success" type="button" (click)="onAddPhone()">
+            Add Another Phone
+          </button>
       </div>
       <div class="form-group">
         <label for="products">Products</label>

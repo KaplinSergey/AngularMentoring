@@ -29,6 +29,6 @@ export const getSelectedOrderByUrl = createSelector(
             return orders[orderID];
         } else {
             const cart = ServiceLocator.injector.get(CartService);
-            return new OrderModel(null, false, '', '', '', '', cart.getCart().items);
+            return new OrderModel(null, false, '', '', '', [''], cart.getCart().items);
         }
     });
