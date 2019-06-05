@@ -5,3 +5,7 @@
 .available {
     background-color: darkseagreen
   }
+
+.panel {
+  margin-bottom: 0;
+}
