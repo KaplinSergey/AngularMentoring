@@ -1,9 +1,9 @@
 <h2>Products list</h2>
-<ul>
-  <li *ngFor="let product of products | async">
-    <app-product-list-item [product] = product></app-product-list-item>
+<div *ngFor="let product of products | async">
+  <div class="product-item">
+    <app-product-list-item [product]=product></app-product-list-item>
     <div *ngIf="product.isAvailable">
-      <button (click)="onBuy(product)">Buy</button>
-    </div>  
-  </li>
-</ul>
+      <button class="btn btn-info btn-buy" (click)="onBuy(product)">Buy</button>
+    </div>
+  </div>
+</div>
